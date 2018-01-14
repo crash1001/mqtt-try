@@ -1,5 +1,5 @@
 var emailID="rohit.singh@rts.com.np";
-var url = "http://hardware.wscada.net:88/api/"
+var url = "https://hardware.wscada.net:483/api/"
 
 function addNewDevice() {
     var newDeviceUDI = document.getElementById("deviceUDI").value;
@@ -9,12 +9,22 @@ function addNewDevice() {
         "emailId" : emailID,
         "udi" : newDeviceUDI
     });
-    var headerData = {"Content-type" : "application/x-www-form-urlencoded"};
+    var headerData = {"Content-type" : "application/json"};
     fetchRequest(headerData, bodyData ,apiDeviceAdd);
 }
 
 function addLinkage() {
-
+	var publisherUDIl = document.getElementById("publisherUDI").value;
+	var subscriberUDIl = document.getElementById("subscriberUDI").value;
+	var targetApi = "linkageLink";
+	var apiDeviceAdd = url + targetApi;
+	var bodyData = JSON.stringify({
+		"emailId" : emailID,
+		"publisherudi" : publisherUDIl,
+		"subscriberudi" : subscriberUDIl
+	});
+	var headerData = {"Content-type" : "application/json"};
+    fetchRequest(headerData, bodyData ,apiDeviceAdd);
 }
 
 function fetchRequest(headerData, bodyData, url) {
@@ -27,13 +37,13 @@ function fetchRequest(headerData, bodyData, url) {
             .then(response => response.json())
              .then(function(data) {
                     console.log('Request succeeded with JSON response', data);
-                    if(data.response) {
-                        //if request passed
-                          alert("request passed");
+                    if(data.response.errors.length === 0) {
+                       
+                          alert("OK!");
                     }
                    else
                    {
-                       alert("request failed");
+                       alert("Failed!");
 
                    }
               })
