@@ -3,8 +3,9 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
     <title>Title</title>
 </head>
@@ -19,7 +20,8 @@
                 </div>
 
             </div>
-            <button id="submitDevice" class="btn btn-lg btn-primary" type="button" onclick="addNewDevice()">Add Device</button>
+            <button id="submitDevice" class="btn btn-lg btn-primary" type="button" onclick="deviceadd()">Add Device</button>
+            <button id="submitDevice" class="btn btn-lg btn-primary" type="button" onclick="deviceremove()">Device Remove</button>
 
         </form>
 
@@ -37,7 +39,10 @@
                     <input type="text" class="form-control" id="subscriberUDI" required>
                 </div>
             </div>
-            <button id="submitLinkage" class="btn btn-lg btn-primary" type="button" onclick="addLinkage()">Link</button>
+
+            <button id="submitLinkage" class="btn btn-lg btn-primary" type="button" onclick="linkagelink()">Link</button>
+            <button id="submitLinkage" class="btn btn-lg btn-primary" type="button" onclick="linkageunlink()">UnLink</button>
+
         </form>
 
 
