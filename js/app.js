@@ -1,16 +1,17 @@
 //Global variables
-var emailId;
+
 var headerData = {"Content-type" : "application/json"};
 var url = "http://hardware.wscada.net:88/api/";
 
 //Validate Login for Users
 function UserAuthenticate() {
 
-    emailId = $("#inputEmail").val();
+    var email = $("#inputEmail").val();
+	localStorage.setItem('emailId',email);
     var password = $("#inputPassword").val();
     var requestUrl = url + "userauthenticate";
     var jsonBody = JSON.stringify({
-        "emailId": emailId,
+        "emailId": email,
         "password": password
     });
     var request = new Request(requestUrl, {method: 'POST', headers: headerData, body: jsonBody});
@@ -101,10 +102,13 @@ function UserCreate() {
 
 //Add Device function
 function DeviceAdd() {
+	var email = localStorage.getItem("emailId");
+	console.log('emailID :',email);
     var requestUrl = url + "deviceadd";
     var newDeviceUDI = $("#deviceUDI").val();
+	
     var jsonBody = JSON.stringify({
-        "emailId" : emailID,
+        "emailId" : localStorage.getItem('emailId'),
         "udi" : newDeviceUDI
     });
     console.log('Body :',jsonBody);
@@ -116,7 +120,12 @@ function DeviceAdd() {
 .then(function (responseData) {
 
         if (responseData.response.errors.length === 0) {
-            alert("Device Added Sucessfully !! ");
+			var msg = "Device Sucessfully Added!!";
+			if(responseData.response.reply.value === null) {
+				var msg = "Device Already exists!!";
+			}
+			
+            alert(msg);
             console.log('response :',responseData.response);
 
         }
@@ -135,11 +144,12 @@ function DeviceAdd() {
 
 //Remove Device function
 function DeviceRemove() {
-
+	var email = localStorage.getItem("emailId");
+	console.log('emailID :',email);
     var requestUrl = url + "deviceremove";
     var newDeviceUDI = $("#deviceUDI").val();
     var jsonBody = JSON.stringify({
-        "emailId" : emailID,
+        "emailId" : email,
         "udi" : newDeviceUDI
     });
     console.log('Body :',jsonBody);
