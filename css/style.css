@@ -15,3 +15,8 @@ h1{
 .info-content {
     color: #999;
 }
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}

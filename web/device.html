@@ -15,14 +15,14 @@
 
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="index.html">Info</a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="device.html">Add Device</a>
+            <li class="nav-item active">
+                <a class="nav-link" href="device.html">Add/Remove Device</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="linkage.html">Link/Unlink Device</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Pricing</a>
@@ -41,41 +41,8 @@
 </nav>
 
 
-<div class="container row">
-
-    <div class="user-info text-center"  style="margin-right: auto; margin-left: auto; margin-top: 1em;">
-        <h1 style="margin-bottom: 1rem; align-content: center">User Information</h1>
-
-        <p class="user-email ">Email : </p>
-        <p class="user-firstName">First Name : </p>
-        <p class="user-lastName">Last Name : </p>
-        <p class="user-nickName">Nick Name : </p>
-        <p class="user-cell">Contact Number : </p>
-        <p class="user-country">Country : </p>
-        <p class="user-gender">Gender : </p>
-        <p class="user-group">Groups : </p>
-        <p class="user-tags">Tags : </p>
-        <p class="user-role">Role : </p>
-        <p class="user-status">Status : </p>
-
-        <h1 class="user-devices" style="margin-bottom: 1rem; align-content: center">User Device</h1>
-    </div>
-    <!--<div class="text-center"  style="margin-right: auto; margin-left: auto; margin-top: 3em;">-->
-    <!--<h1 class="user-devices" style="margin-bottom: 1rem; align-content: center">User Devices</h1>-->
-
-    <!--</div>-->
-
-
-
-</div>
-<script>
-    $(document).ready(function() {
-        UserGetInfo();
-    });
-</script>
-</body>
-</html>
 <div class="container">
+    <div class="form-input float-left">
     <form>
         <h2>Add Device</h2>
         <div class="form-group row">
@@ -83,32 +50,45 @@
                 <label for="deviceUDI">UDI</label>
                 <input type="text" class="form-control" id="deviceUDI" required>
             </div>
-
         </div>
         <button id="submitDevice" class="btn btn-lg btn-primary" type="button" onclick="DeviceAdd()">Add Device</button>
         <button id="submitDevice" class="btn btn-lg btn-primary" type="button" onclick="DeviceRemove()">Device Remove</button>
 
     </form>
+    </div>
+    <div class="float-right">
+        <h2 class="user-devices">List of Added Devices</h2>
 
-    <form>
-        <h2>Linkage</h2>
-        <div class="form-group row">
-            <div class="col-xs-4">
-                <label for="publisherUDI">Publisher UDI</label>
-                <input type="text" class="form-control" id="publisherUDI" required>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-xs-4">
-                <label for="subscriberUDI">Subscriber UDI</label>
-                <input type="text" class="form-control" id="subscriberUDI" required>
-            </div>
-        </div>
-
-        <button id="submitLinkage" class="btn btn-lg btn-primary" type="button" onclick="LinkageLink()">Link</button>
-        <button id="submitLinkage" class="btn btn-lg btn-primary" type="button" onclick="LinkageUnLink()">UnLink</button>
-
-    </form>
+    </div>
 
 
 </div>
+<script>
+    $(document).ready(function() {
+        UserGetDevice();
+    });
+</script>
+
+</body>
+</html>
+
+
+<!--<form>-->
+    <!--<h2>Linkage</h2>-->
+    <!--<div class="form-group row">-->
+        <!--<div class="col-xs-4">-->
+            <!--<label for="publisherUDI">Publisher UDI</label>-->
+            <!--<input type="text" class="form-control" id="publisherUDI" required>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group row">-->
+        <!--<div class="col-xs-4">-->
+            <!--<label for="subscriberUDI">Subscriber UDI</label>-->
+            <!--<input type="text" class="form-control" id="subscriberUDI" required>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<button id="submitLinkage" class="btn btn-lg btn-primary" type="button" onclick="LinkageLink()">Link</button>-->
+    <!--<button id="submitLinkage" class="btn btn-lg btn-primary" type="button" onclick="LinkageUnLink()">UnLink</button>-->
+
+<!--</form>-->
