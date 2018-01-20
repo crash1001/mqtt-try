@@ -379,7 +379,7 @@ function UserEdit() {
     var lastName = $("#lastName").val();
     var nickName = $("#userName").val();
     var mobileNumber = $("#mobileNumber").val();
-    var email = $("#email").val();
+    var email = localStorage.getItem('emailId');
     var country = $("#country").val();
     var gender = $("input[type='radio'][name='gender']:checked").val();
 
