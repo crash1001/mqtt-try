@@ -62,17 +62,6 @@ function UserCreate() {
         "country" : country
     });
 
-    // var jsonBody = JSON.stringify({
-    //     "emailId" : 'ditish.maharjan@rts.com.np' ,
-    //     "firstName" : 'Ditish',
-    //     "lastName" : 'Maharjan',
-    //     "nickName" : 'dtsmzn',
-    //     "password" : 'password123',
-    //     "cellPhoneNumber" : '9843632323',
-    //     "gender" : 'Male',
-    //     "country" : 'Nepal'
-    // });
-
     console.log('Body :',jsonBody);
     var requestUrl = url + "usercreate";
     var request = new Request(requestUrl, {method: 'POST', headers: headerData, body: jsonBody});
@@ -127,7 +116,7 @@ function DeviceAdd() {
 			
             alert(msg);
             console.log('response :',responseData.response);
-
+            window.location.replace("device.html");
         }
         else {
             alert("Error while adding device : " + responseData.response.errors[0].reason);
@@ -163,7 +152,7 @@ function DeviceRemove() {
         if (responseData.response.errors.length === 0) {
             alert("Device Removed !! ");
             console.log('response :',responseData.response);
-
+            window.location.replace("device.html");
         }
         else {
             alert("Error while removing device : " + responseData.response.errors[0].reason);
@@ -274,12 +263,25 @@ function UserGetInfo() {
         if (responseData !== null) {
             console.log('response :', responseData);
             $('.user-email').append(responseData.emailId);
+
+            localStorage.setItem("firstName", responseData.firstName);
             $('.user-firstName').append(responseData.firstName);
+
+            localStorage.setItem("lastName", responseData.lastName);
             $('.user-lastName').append(responseData.lastName);
+
+            localStorage.setItem("nickName", responseData.nickname);
             $('.user-nickName').append(responseData.nickname);
+
+            localStorage.setItem("cellPhoneNumber", responseData.cellPhoneNumber);
             $('.user-cell').append(responseData.cellPhoneNumber);
+
+            localStorage.setItem("country", responseData.country);
             $('.user-country').append(responseData.country);
+
+            localStorage.setItem("Gender", responseData.gender);
             $('.user-gender').append(responseData.gender);
+
             $('.user-status').append(responseData.status);
             if (responseData.group) {
 
@@ -309,6 +311,7 @@ function UserGetInfo() {
 }
 //End of UserGetInfo Function()
 
+//Gets all the device added to the user'saccount
 function UserGetDevice(){
     //Request for user's device information
     var email = localStorage.getItem("emailId");
@@ -338,9 +341,11 @@ function UserGetDevice(){
                 var alias = (responseData[i].alias);
                 var deviceType = (responseData[i].messagingPattern);
                 var deviceSharedList = "";
-                var numOfPeopleShared = responseData[i].length;
+                var numOfPeopleShared = responseData[i].share.length;
+
                 for(var j=0;j<numOfPeopleShared;j++) {
-                    deviceSharedList = responseData[i][j] + ', ';
+                    deviceSharedList = responseData[i].share[0].id + ', ';
+                    console.log('devicesharedlist :',deviceSharedList);
                 }
                 var sharedList = (deviceSharedList);
                 var generatedview =
@@ -351,15 +356,6 @@ function UserGetDevice(){
 
                 $(".user-devices").after(generatedview);
             }
-
-            // $('.user-email').append(responseData.emailId);
-            // $('.user-firstName').append(responseData.firstName);
-            // $('.user-lastName').append(responseData.lastName);
-            // $('.user-nickName').append(responseData.nickname);
-            // $('.user-cell').append(responseData.cellPhoneNumber);
-            // $('.user-country').append(responseData.country);
-            // $('.user-gender').append(responseData.gender);
-            // $('.user-status').append(responseData.status)
 
         }
         else {
@@ -374,123 +370,209 @@ function UserGetDevice(){
         });
 
 }
+//End of function User Get Device
 
-// //Function get user information
-// function UserGetInfo() {
-//
-//     var email = localStorage.getItem("emailId");
-//     console.log('emailID :', email);
-//     var requestUrl = url + "usergetinfo";
-//
-//     var jsonBody = JSON.stringify({
-//         "emailId": email
-//     });
-//     console.log('Body :', jsonBody);
-//
-//     //Request for user information
-//     var request = new Request(requestUrl, {method: 'POST', headers: headerData, body: jsonBody});
-//     console.log('request :', request);
-//     fetch(request)
-//         .then(response = > response.json()
-// )
-// .
-//     then(function (responseData) {
-//
-//         if (responseData !== null) {
-//             console.log('response :', responseData);
-//             $('.user-email').append(responseData.emailId);
-//             $('.user-firstName').append(responseData.firstName);
-//             $('.user-lastName').append(responseData.lastName);
-//             $('.user-nickName').append(responseData.nickname);
-//             $('.user-cell').append(responseData.cellPhoneNumber);
-//             $('.user-country').append(responseData.country);
-//             $('.user-gender').append(responseData.gender);
-//             $('.user-status').append(responseData.status);
-//             if (responseData.grou) {
-//
-//                 for (i = 0; i < responseData.group.length; i++) {
-//                     $('.user-group').append(responseData.group[i] + ', ');
-//                 }
-//             }
-//             if (responseData.role) {
-//                 $('.user-role').append(responseData.role);
-//             }
-//             if (responseData.tag) {
-//
-//                 for (i = 0; i < responseData.group.length; i++) {
-//                     $('.user-tags').append(responseData.tag[i] + ', ');
-//                 }
-//
-//             }
-//         }
-//
-//     })
-//         .catch(function (error) {
-//             alert('Request Failed UserGetInfo:' + error);
-//             console.log("fault", error);
-//
-//         });
-//     UserGetDevice();
-// }
-//
-// //Request for user's device information
-// function UserGetDevice(){
-//
-//     var email = localStorage.getItem("emailId");
-//     console.log('emailID :', email);
-//     var  requestUrl = url + "usergetdevice";
-//
-//     var jsonBody = JSON.stringify({
-//         "emailId": email
-//     });
-//    var request = new Request(requestUrl, {method: 'POST', headers: headerData, body: jsonBody});
-//
-//     fetch(request)
-//         .then(response => response.json())
-// .then(function (responseData) {
-//
-//         if (responseData !== null) {
-//             console.log('response :',responseData);
-//             var numberOfDevices = responseData.length;
-//
-//             for(var i=0;i<numberOfDevices;i++) {
-//                 var udi = (responseData[i].udi);
-//                 var alias = (responseData[i].alias);
-//                 var deviceType = (responseData[i].messagingPattern);
-//                 var deviceSharedList = "";
-//                 var numOfPeopleShared = responseData[i].length;
-//                 for(var j=0;j<numOfPeopleShared;j++) {
-//                     deviceSharedList = responseData[i][j] + ', ';
-//                 }
-//                 var sharedList = (deviceSharedList);
-//                 var generatedview =
-//                     '<p style="margin-top: 2rem"> Alias : ' + alias + '</p>' +
-//                     '<p> DeviceType : ' + deviceType + '</p>' +
-//                     '<p> UDI : ' + udi + '</p>' +
-//                     '<p> Device is Shared to : ' + sharedList + '</p>';
-//
-//                 $(".user-devices").after(generatedview);
-//             }
-//
-//             // $('.user-email').append(responseData.emailId);
-//             // $('.user-firstName').append(responseData.firstName);
-//             // $('.user-lastName').append(responseData.lastName);
-//             // $('.user-nickName').append(responseData.nickname);
-//             // $('.user-cell').append(responseData.cellPhoneNumber);
-//             // $('.user-country').append(responseData.country);
-//             // $('.user-gender').append(responseData.gender);
-//             // $('.user-status').append(responseData.status)
-//
-//         }
-//         else {
-//             // alert("Error while adding device : " + responseData.response.errors[0].reason);
-//             console.log("Error");
-//         }
-//     })
-//         .catch(function (error) {
-//             alert('Request Failed UserGetInfo:' + error);
-//             console.log("fault", error);
-//
-//         });
-//
-// }
+//User Edit Function
+function UserEdit() {
+
+    var firstName = $("#firstName").val();
+    var lastName = $("#lastName").val();
+    var nickName = $("#userName").val();
+    var mobileNumber = $("#mobileNumber").val();
+    var email = $("#email").val();
+    var country = $("#country").val();
+    var gender = $("input[type='radio'][name='gender']:checked").val();
+
+
+
+    var jsonBody = JSON.stringify({
+        "emailId" : email,
+        "firstName" : firstName,
+        "lastName" : lastName,
+        "nickname" : nickName,
+        "cellPhoneNumber" : mobileNumber,
+        "gender" : gender,
+        "country" : country
+    });
+
+
+    console.log('Body :',jsonBody);
+    var requestUrl = url + "useredit";
+    var request = new Request(requestUrl, {method: 'POST', headers: headerData, body: jsonBody});
+    console.log('request :', request);
+
+    fetch(request)
+        .then(response => response.json())
+.then(function (responseData) {
+
+        if (responseData.response.errors.length === 0) {
+            alert("User Edited Sucessfully");
+            console.log('response :',responseData.response);
+            window.location.replace('index.html');
+        }
+        else {
+            alert("Error : " + responseData.response.errors[0].reason);
+            console.log("E");
+        }
+    })
+        .catch(function (error) {
+            alert('Request Failed :' + error);
+            console.log("fault");
+
+        });
+}
+
+function UserEditClear() {
+    $("#firstName").val(localStorage.getItem("firstName"));
+    $("#lastName").val(localStorage.getItem("lastName"));
+    $("#userName").val(localStorage.getItem("nickName"));
+    $("#mobileNumber").val(localStorage.getItem("cellPhoneNumber"));
+    $("#email").val(localStorage.getItem("emailId"));
+    $("#country").val(localStorage.getItem("country"));
+}
+
+//Device Share
+function DeviceShare(){
+    var email = localStorage.getItem("emailId");
+    var udi = $("#udi").val();
+    var shareEmail = $("#shareEmail").val();
+    var privilage = $("#privilage").val();
+    var requestUrl = url + "deviceshare";
+
+    var jsonBody = JSON.stringify({
+        "emailId" : email,
+        "udi" : udi,
+        "share" : {
+            "id" : shareEmail,
+            "privilage" : privilage
+        }
+
+    });
+    console.log('jsonBody :', jsonBody);
+
+    var request = new Request(requestUrl, {method: 'POST', headers: headerData, body: jsonBody});
+    console.log('request :', request);
+    fetch(request)
+        .then(response => response.json())
+.then(function (responseData) {
+
+        if (responseData.response.errors.length === 0) {
+            alert("Device Shared Sucessfully!!");
+            console.log('response :',responseData.response);
+
+        }
+        else {
+            alert("Error Sharing Device : " + responseData.response.errors[0].reason);
+            console.log("Error", responseData.response.errors[0].reason);
+        }
+    })
+        .catch(function (error) {
+            alert('Request Failed :' + error);
+            console.log("fault", error);
+
+        });
+}
+//End of function LinkageLink
+
+
+//Device Un-Share
+function DeviceUnShare(){
+    var email = localStorage.getItem("emailId");
+    var udi = $("#udi").val();
+    var shareEmail = $("#shareEmail").val();
+    var privilage = $("#privilage").val();
+    var requestUrl = url + "deviceunregister";
+
+    var jsonBody = JSON.stringify({
+        "emailId" : email,
+        "udi" : udi,
+        "share" : {
+            "id" : shareEmail,
+            "privilage" : privilage
+        }
+
+    });
+    var request = new Request(requestUrl, {method: 'POST', headers: headerData, body: jsonBody});
+    console.log('request :', request);
+    fetch(request)
+        .then(response => response.json())
+.then(function (responseData) {
+
+        if (responseData.response.errors.length === 0) {
+            alert("Device Un-Shared Sucessfully!!");
+            console.log('response :',responseData.response);
+
+        }
+        else {
+            alert("Error Un-Sharing Device : " + responseData.response.errors[0].reason);
+            console.log("Error", responseData.response.errors[0].reason);
+        }
+    })
+        .catch(function (error) {
+            alert('Request Failed :' + error);
+            console.log("fault", error);
+
+        });
+}
+//End of function LinkageLink
+
+//Get all the shared devices user
+function UserGetSharedDevice() {
+    //Request for user's device information
+    var email = localStorage.getItem("emailId");
+    console.log('emailID :',email);
+    var requestUrl = url + "usergetshareddevice";
+
+    var jsonBody = JSON.stringify({
+        "emailId" : email
+    });
+    console.log('Body :',jsonBody);
+
+    //Request for user information
+    var request = new Request(requestUrl, {method: 'POST', headers: headerData, body: jsonBody});
+    console.log('request :', request);
+
+
+    fetch(request)
+        .then(response => response.json())
+.then(function (responseData) {
+
+        if (responseData !== null) {
+            console.log('response :',responseData);
+            var numberOfDevices = responseData.length;
+            console.log('number of shared device  :',responseData);
+            for(var i=0;i<numberOfDevices;i++) {
+                var udi = (responseData[i].udi);
+                var alias = (responseData[i].alias);
+                var deviceType = (responseData[i].messagingPattern);
+                var owner =  responseData[i].owner;
+
+
+                // var deviceSharedList = "";
+                // var numOfPeopleShared = responseData[i].length;
+                // for(var j=0;j<numOfPeopleShared;j++) {
+                //     deviceSharedList = responseData[i][j] + ', ';
+                // }
+                // var sharedList = (deviceSharedList);
+                var generatedview =
+                    '<p style="margin-top: 2rem"> Alias : ' + alias + '</p>' +
+                    '<p> DeviceType : ' + deviceType + '</p>' +
+                    '<p> UDI : ' + udi + '</p>' +
+                    '<p> Owner : ' + owner + '</p>';
+
+                $(".user-share-device").after(generatedview);
+            }
+
+        }
+        else {
+            // alert("Error while adding device : " + responseData.response.errors[0].reason);
+            console.log("Error");
+        }
+    })
+        .catch(function (error) {
+            alert('Request Failed UserGetInfo:' + error);
+            console.log("fault", error);
+
+        });
+
+}

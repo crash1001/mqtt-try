@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="../js/app.js"></script>
+    <link rel="stylesheet" href="../css/login.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <title>Edit</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <form class="registration form-horizontal" role="form" name="userRegister">
+            <h2>Edit Account</h2>
+
+            <div class="form-group">
+                <label for="firstName" class="col-sm-3 control-label">First Name</label>
+                <div class="col-sm-9">
+                    <input type="text" id="firstName" class="form-control" placeholder="First Name" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+                <div class="col-sm-9">
+                    <input type="text" id="lastName" class="form-control" placeholder="Last Name" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="userName" class="col-sm-3 control-label">User Name</label>
+                <div class="col-sm-9">
+                    <input type="text" id="userName" class="form-control" placeholder="User Name" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="mobileNumber" class="col-sm-3 control-label">Mobile Number</label>
+                <div class="col-sm-9">
+                    <input type="tel" id="mobileNumber" class="form-control" placeholder="Mobile Number" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="col-sm-3 control-label">Email address</label>
+                <div class="col-sm-9">
+                    <input type="email" id="email" class="form-control" placeholder="Email address" required />
+                </div>
+            </div>
+
+            <!--<div class="form-group">-->
+                <!--<label for="oldPassword" class="col-sm-3 control-label">Password</label>-->
+                <!--<div class="col-sm-9">-->
+                    <!--<input type="password" id="oldPassword" class="form-control" placeholder="Password" required value="" />-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="form-group">-->
+                <!--<label for="newPassword" class="col-sm-3 control-label">Password</label>-->
+                <!--<div class="col-sm-9">-->
+                    <!--<input type="password" id="newPassword" class="form-control" placeholder="Password" required value="" />-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="form-group">-->
+                <!--<label for="retypeNewPassword" class="col-sm-3 control-label">Re-Type Password</label>-->
+                <!--<div class="col-sm-9">-->
+                    <!--<input type="password" id="retypeNewPassword" class="form-control" placeholder="Password" required />-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="form-group">
+                <label for="country" class="col-sm-3 control-label">Country</label>
+                <div class="col-sm-9">
+                    <select id="country" class="form-control" >
+                        <option>Nepal</option>
+                        <option>India</option>
+                        <option>USA</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">Gender</label>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label class="radio-inline">
+                                <input type="radio" name="gender" id="femaleRadio" value="Female">Female
+                            </label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="radio-inline">
+                                <input type="radio" name="gender" id="maleRadio" value="Male">Male
+                            </label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="radio-inline">
+                                <input type="radio" name="gender" id="unknownRadio" value="Unknown">Unknown
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div style="margin-top:10px" class="form-group">
+                <button id="submit" class="btn btn-lg btn-primary btn-block " type="button" onclick="UserEdit()">Register</button>
+            </div>
+
+            <div style="margin-top:10px" class="form-group">
+                <button type="submit" class="btn btn-primary btn-block" onclick="window.location.replace('index.html');">Cancel</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+<script>
+//    $(document).ready(function() {
+//        UserEditClear();
+//    });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

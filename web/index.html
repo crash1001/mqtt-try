@@ -7,7 +7,7 @@
     <script src="../js/app.js"></script>
     <link href="css/style.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
-    <title>Title</title>
+    <title>User Info</title>
 </head>
 <body>
 
@@ -26,7 +26,7 @@
                     <a class="nav-link" href="linkage.html">Link/Unlink Device</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
+                    <a class="nav-link" href="share.html">Share/Un-share Device</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#">Disabled</a>
@@ -59,7 +59,9 @@
             <p class="user-role">Role : </p>
             <p class="user-status">Status : </p>
 
-
+            <div style="margin-top:10px" class="form-group">
+                <button type="submit" class="btn btn-primary " onclick="window.location.replace('useredit.html')">Edit User Info</button>
+            </div>
         </div>
         <div class="float-right" style="width: 50%">
             <h1 class="user-devices" style="margin-bottom: 1rem; align-content: center">User's Devices</h1>

@@ -6,7 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="../js/app.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
-    <title>Linkage</title>
+    <title>Share</title>
 </head>
 <body>
 
@@ -21,10 +21,10 @@
             <li class="nav-item ">
                 <a class="nav-link" href="device.html">Add/Remove Device</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="linkage.html">Link/Unlink Device</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="share.html">Share/Un-share Device</a>
             </li>
             <li class="nav-item">
@@ -44,27 +44,33 @@
 <div class="container">
     <div class="form-input float-left">
         <form>
-            <h2>Linkage</h2>
+            <h2>Share/Unshare</h2>
             <div class="form-group row">
                 <div class="col-xs-4">
-                    <label for="publisherUDI">Publisher UDI</label>
-                    <input type="text" class="form-control" id="publisherUDI" required>
+                    <label for="udi">UDI of Device to Share</label>
+                    <input type="text" class="form-control" id="udi" required>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-xs-4">
-                    <label for="subscriberUDI">Subscriber UDI</label>
-                    <input type="text" class="form-control" id="subscriberUDI" required>
+                    <label for="shareEmail">Share to</label>
+                    <input type="email" class="form-control" id="shareEmail" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-xs-4">
+                    <label for="privilage">Privilage</label>
+                    <input type="number" class="form-control" id="privilage" value=2 required disabled>
                 </div>
             </div>
 
-            <button id="submitLinkage" class="btn btn-lg btn-primary" type="button" onclick="LinkageLink()">Link</button>
-            <button id="submitLinkage" class="btn btn-lg btn-primary" type="button" onclick="LinkageUnLink()">UnLink</button>
+            <button id="submitLinkage" class="btn btn-lg btn-primary" type="button" onclick="DeviceShare()">Share</button>
+            <button id="submitLinkage" class="btn btn-lg btn-primary" type="button" onclick="DeviceUnShare()">Un-Share</button>
 
         </form>
     </div>
     <div class="float-right">
-        <h2 class="user-devices">List of Added Devices</h2>
+        <h2 class="user-share-device user-devices">List of Shared Device</h2>
 
     </div>
 
@@ -73,6 +79,7 @@
 <script>
     $(document).ready(function() {
         UserGetDevice();
+//        UserGetSharedDevice();
     });
 </script>
 
