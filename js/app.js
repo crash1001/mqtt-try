@@ -481,7 +481,7 @@ function DeviceUnShare(){
     var udi = $("#udi").val();
     var shareEmail = $("#shareEmail").val();
     var privilage = $("#privilage").val();
-    var requestUrl = url + "deviceunregister";
+    var requestUrl = url + "deviceunshare";
 
     var jsonBody = JSON.stringify({
         "emailId" : email,
