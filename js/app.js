@@ -74,7 +74,7 @@ function UserCreate() {
                 if (responseData.response.errors.length === 0) {
                     alert("Sucessfully Registered ");
                     console.log('response :',responseData.response);
-
+                    window.location.replace("../login.html");
                 }
                 else {
                     alert("Error : " + responseData.response.errors[0].reason);
@@ -190,7 +190,7 @@ function LinkageLink(){
         if (responseData.response.errors.length === 0) {
             alert("Device Link successfully added!!");
             console.log('response :',responseData.response);
-
+            window.location.replace("linkage.html");
         }
         else {
             alert("Error while linking publisher and subscriber : " + responseData.response.errors[0].reason);
@@ -227,7 +227,7 @@ function LinkageUnLink(){
         if (responseData.response.errors.length === 0) {
             alert("Device Link successfully removed!! ");
             console.log('response :',responseData.response);
-
+            window.location.replace("linkage.html");
         }
         else {
             alert("Error while un-linking publisher and subscriber : " + responseData.response.errors[0].reason);
@@ -406,9 +406,10 @@ function UserEdit() {
 .then(function (responseData) {
 
         if (responseData.response.errors.length === 0) {
+            window.location.replace('index.html');
             alert("User Edited Sucessfully");
             console.log('response :',responseData.response);
-            window.location.replace('index.html');
+
         }
         else {
             alert("Error : " + responseData.response.errors[0].reason);
@@ -459,7 +460,7 @@ function DeviceShare(){
         if (responseData.response.errors.length === 0) {
             alert("Device Shared Sucessfully!!");
             console.log('response :',responseData.response);
-
+            window.location.replace('share.html');
         }
         else {
             alert("Error Sharing Device : " + responseData.response.errors[0].reason);
@@ -501,7 +502,7 @@ function DeviceUnShare(){
         if (responseData.response.errors.length === 0) {
             alert("Device Un-Shared Sucessfully!!");
             console.log('response :',responseData.response);
-
+            window.location.replace('share.html');
         }
         else {
             alert("Error Un-Sharing Device : " + responseData.response.errors[0].reason);
