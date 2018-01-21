@@ -344,8 +344,9 @@ function UserGetDevice(){
                 var numOfPeopleShared = responseData[i].share.length;
 
                 for(var j=0;j<numOfPeopleShared;j++) {
-                    deviceSharedList = responseData[i].share[0].id + ', ';
-                    console.log('devicesharedlist :',deviceSharedList);
+                    let deviceshare = responseData[i].share[j].id + ', ';
+                    console.log('devicesharedlist :',deviceshare);
+					deviceSharedList = deviceshare + deviceSharedList;
                 }
                 var sharedList = (deviceSharedList);
                 var generatedview =
@@ -437,15 +438,15 @@ function DeviceShare(){
     var email = localStorage.getItem("emailId");
     var udi = $("#udi").val();
     var shareEmail = $("#shareEmail").val();
-    var privilage = $("#privilage").val();
+ //   var privilage = $("#privilage").val();
     var requestUrl = url + "deviceshare";
 
     var jsonBody = JSON.stringify({
         "emailId" : email,
         "udi" : udi,
         "share" : {
-            "id" : shareEmail,
-            "privilage" : privilage
+            "id" : shareEmail
+         //   "privilage" : privilage
         }
 
     });
@@ -481,15 +482,15 @@ function DeviceUnShare(){
     var email = localStorage.getItem("emailId");
     var udi = $("#udi").val();
     var shareEmail = $("#shareEmail").val();
-    var privilage = $("#privilage").val();
+ //   var privilage = $("#privilage").val();
     var requestUrl = url + "deviceunshare";
 
     var jsonBody = JSON.stringify({
         "emailId" : email,
         "udi" : udi,
         "share" : {
-            "id" : shareEmail,
-            "privilage" : privilage
+            "id" : shareEmail
+    //        "privilage" : privilage
         }
 
     });
